@@ -1,0 +1,157 @@
+/* pages/songDetail/songDetail.wxss */
+page{
+    /* 铺满整个页面 */
+    height: 100%;
+}
+.container{
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.singerName{
+  margin-top: 20rpx;
+  height: 120rpx;
+}
+/* 底座 */
+.circle{
+    position: relative;
+    z-index: 1000;
+    width: 60rpx;
+    height: 60rpx;
+    border-radius: 50%;
+    background-color: #fff;
+    margin: 10rpx 0;
+}
+/* 摇杆 */
+.needle{
+    width: 200rpx;
+    height: 320rpx;
+    position: relative;
+    z-index: 99;
+    top: -30rpx;
+    left: 60rpx;
+    /* 旋转时默认会以50%，50%为中心，需要改变 */
+    transform-origin: 40rpx 0;
+    transform: rotate(-20deg);
+    /* 设置过渡效果 */
+    transition: transform 1s;
+}
+
+/* 点击暂停摇杆放下来 */
+.needleRotate{
+    transform: rotate(0deg);
+}
+
+/* 磁盘 */
+.discContainer{
+    position: relative;
+    top: -170rpx;
+    width: 598rpx;
+    height: 598rpx;
+}
+/* 设置磁盘在播放歌曲时转动 */
+.discAnimation{
+    animation: disc 4s linear infinite;
+    /* 延时一秒转动 */
+    animation-delay: 1s;
+}
+/*
+  @keyframes: 设置动画帧
+    1) from to
+      - 使用于简单的动画，只有起始帧和结束帧
+      - 北京 - 上海  直达
+    2) 百分比
+      - 多用于复杂的动画，动画不止两帧
+      - 北京 - 上海 ---> 北京 -- 天津 --- 深圳 --- 上海
+      - 0% - 100%, 可以任意拆分
+
+*/
+@keyframes disc {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+.disc{
+    width: 598rpx;
+    height: 598rpx;
+}
+.musicImg{
+    width: 370rpx;
+    height: 370rpx;
+    /* 让子元素在父元素中垂直居中的一种方式 */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 50%;
+}
+
+/* 底部状态栏 */
+.musicControl{
+    position: absolute;
+    bottom: 40rpx;
+    left: 0;
+    border-top: 1rpx solid #fff;
+    width: 100%;
+    display: flex;
+}
+
+.musicControl text{
+    width: 20%;
+    height: 120rpx;
+    line-height: 120rpx;
+    text-align: center;
+    color: #fff;
+    font-size: 50rpx;
+}
+/* 选中text且text中class为big */
+.musicControl text.big{
+    font-size: 80rpx;
+}
+
+/* 进度条区域 */
+.progressControl{
+    width: 640rpx;
+    height: 80rpxj;
+    line-height: 80rpx;
+    display: flex;
+    position: absolute;
+    bottom: 200rpx;
+
+}
+.barControl{
+    width: 450rpx;
+    height: 4rpx;
+    background-color: rgba(0, 0, 0, .4);
+    position: relative;
+    margin: auto;
+}
+
+.currentTimeControl{
+    width: 100rpx;
+    background-color: red;
+    height: 4rpx;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.circle{
+    width: 12rpx;
+    height: 12rpx;
+    border-radius: 50%;
+    position: absolute;
+    right: -12rpx;
+    top: -12rpx;
+    background-color: #fff;
+
+}
+
+

@@ -1,0 +1,74 @@
+<!--index/index.wxml-->
+<!-- 轮播图区域 -->
+<view class="indexContainer">
+  <swiper class="banners" indicator-dots='true' indicator-color='ivory' indicator-active-color='#d43c33'>
+    <!-- wx:key必须是对象属性里的唯一的值 -->
+    <swiper-item wx:for="{{bannerList}}" wx:key="bannerId">
+      <!-- 使用接口数据时要注意接口的可选参数，按照正确的可选参数的完整地址找到对应的对象的正确属性名 -->
+      <image src="{{item.pic}}" mode="" />
+    </swiper-item>
+
+  </swiper>
+
+
+  <!-- 导航栏图标区域 -->
+  <view class="navContainer">
+    <view class="navItem" bindtap="toRecommendSong" >
+      <text class="iconfont icon-dianzan"></text>
+      <text>每日推荐</text>
+    </view>
+    <view class="navItem">
+      <text class="iconfont icon-gedan"></text>
+      <text>歌单</text>
+    </view>
+    <view class="navItem">
+      <text class="iconfont icon-paihangbang"></text>
+      <text>排行榜</text>
+    </view>
+    <view class="navItem">
+      <text class="iconfont icon-diantai"></text>
+      <text>电台</text>
+    </view>
+    <view class="navItem">
+      <text class="iconfont icon-zhibo"></text>
+      <text>直播</text>
+    </view>
+  </view>
+
+  <!-- 推荐歌曲头部区域 -->
+  <view class="recommendContainer">
+    <NavHeader title="推荐歌曲" nav="为你精心推荐"></NavHeader>
+
+
+    <!-- 推荐歌曲轮滑图内容区 -->
+    <scroll-view class="scroll" enable-flex scroll-x>
+      <view class="scrollItem" wx:for="{{recommend}}" wx:key="id">
+        <image src="{{item.picUrl}}" />
+        <text>{{item.name}}</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 排行榜区域 -->
+  <view class="topList">
+    <NavHeader title="排行榜" nav="热歌风向标"></NavHeader>
+
+    <!-- 排行榜内容区 -->
+    <!-- swiper有很多属性，需大致记一下。 circular 可从第一张左滑至最后一张 -->
+    <swiper class="topListSwiper" circular next-margin="50rpx">
+      <swiper-item wx:for="{{topList}}" wx:key="name" >
+        <view class="swiperItem">
+          <view class="title">{{item.name}}</view>
+        <view class="musicItem"wx:for="{{item.tracks}}" wx:key="id" wx:for-item="musicItem" >
+          <!-- <image src="{{item.coverImgUrl}}"/> -->
+          <text class="count">{{index + 1}}</text>
+          <text class="musicName">{{musicItem.first}}</text>
+        </view>
+        </view>
+      </swiper-item>
+
+
+    </swiper>
+
+  </view>
+</view>

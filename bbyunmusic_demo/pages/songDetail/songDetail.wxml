@@ -1,0 +1,38 @@
+<view class="container">
+    <view class="singerName">{{song.ar[0].name}}</view>
+    <!-- <view class="circle"></view> -->
+
+    <!-- 使用三元运算符或者与运算来控制摇杆  后面needleRorate必须用引号括起来，不然会被识别成一个变量-->
+    <image class="needle {{isPlay && 'needleRotate'}} " src="http://rr5azf3xe.hn-bkt.clouddn.com/needle.png"></image>
+    <view class="discContainer {{isPlay && 'discAnimation'}}">
+        <image class="disc" src="http://rr5azf3xe.hn-bkt.clouddn.com/disc.png"></image>
+        <image class="musicImg" src="{{song.al.picUrl}}"></image>
+    </view>
+
+
+    <!-- 进度条区域 -->
+    <view class="progressControl">
+        <text>{{currentTime}}</text>
+        <!-- 总进度条 -->
+        <view class="barControl">
+            <!-- 实时进度条 -->
+            <view class="currentTimeControl" style="width:{{currentWidth + 'rpx'}}">
+                <!-- 小圆球 --> 
+                 <view class="circle" ></view>
+            </view>
+        </view>
+        <text>{{durationTime}}</text>
+    </view>
+    <!-- 底部状态栏 -->
+    <view class="musicControl">
+        <text class="iconfont icon-suijibofang:before"></text>
+
+        <text class="iconfont icon-shangyishoushangyige:before" id="pre" bindtap="handleSwitch"></text>
+
+        <text class="iconfont {{isPlay ? 'icon-zanting:before' : 'icon-bofang:before'}}  big" bindtap="handleMusicPlay"></text>
+
+        <text class="iconfont icon-xiayigexiayishou:before" id="next" bindtap="handleSwitch" ></text>
+
+        <text class="iconfont icon-bofangliebiao:before"></text>
+    </view>
+</view>

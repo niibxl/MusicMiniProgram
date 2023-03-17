@@ -1,0 +1,75 @@
+<!--pages/video/video.wxml-->
+<view class="videoContainer">
+    <!-- 头部区域 -->
+    <view class="header">
+        <image src="http://rr5azf3xe.hn-bkt.clouddn.com/video.jpg"></image>
+        <view class="search" bindtap="toSearch">搜索音乐</view>
+        <image src="http://rr5azf3xe.hn-bkt.clouddn.com/logo.png"></image>
+    </view>
+    <!-- 导航区域 -->
+    <scroll-view
+    scroll-x
+    class="navScroll"
+    enable-flex
+    scroll-into-view="{{'scroll' + navId}}"
+    scroll-with-animation
+     >
+        <view id="{{'scroll' + item.id}}" class="navItem" wx:for="{{videoGroupList}}" wx:key="id">
+            <!-- 把数据对象里的id传给id -->
+            <view class="navContent {{navId === item.id ? 'active' : ''}} " bindtap="navChange" id="{{item.id}}">{{item.name}}</view>
+        </view>
+    </scroll-view>
+    <!-- 视频内容区域 -->
+     <!-- 报错：渲染层网络错误，加了autoplay就解决了 -->
+    <scroll-view 
+    class="videoScroll" 
+    autoplay 
+    scroll-y
+    refresher-enabled 
+    bind:refresherrefresh="handleRefresher"           
+    refresher-triggered="{{isTriggered}}"
+    >
+        <view class="videoItem" wx:for="{{videoList}}" wx:key="id" >
+            <video
+            src="{{item.videoUrl}}"
+            bindplay="handlePlay" 
+            id="{{item.id}}"
+            poster="{{item.coverUrl}}"
+            class="common"
+            autoplay="{{true}}"
+            wx:if="{{videoId === item.id}}"
+            object-fit="cover"
+            bindtimeupdate="handleTimeUpdate"
+            bindended="handleEnd"
+            ></video>
+            <!-- image代替video 性能优化 -->
+            <image
+            id="{{item.id}}" 
+            src="{{item.coverUrl}}" 
+            class="common"
+            bindtap="handlePlay"
+            wx:else
+            ></image>
+            <view class="content">{{item.title}}</view>
+            <!-- 视频底部 -->
+            <view class="footer">
+                <image class="avatar" src="{{item.creator.avatarUrl}}"></image>
+                <text class="nickName">{{item.creator.nickname}}</text>
+                <view class="comments_praised">
+                    <text class="item">
+                        <text class="iconfont icon-heart"></text>
+                        <text class="count">{{item.praisedCount}}</text>
+                    </text>
+                    <text class="item">
+                        <text class="iconfont icon-comments"></text>
+                        <text class="count">{{item.commentCount}}</text>
+                    </text>
+                    <!-- open-type="share"为开启转发功能-->
+                    <button open-type="share" class="item btn">
+                        <text class="iconfont icon-more"></text>
+                    </button>
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+</view>

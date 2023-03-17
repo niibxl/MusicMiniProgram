@@ -1,0 +1,30 @@
+
+<view class="container">
+  <view class="wrapper">
+    <view class="left-top-sign">LOGIN</view>
+    <view class="welcome">
+      欢迎回来！
+    </view>
+    <view class="input-content">
+      <view class="input-item">
+        <text class="tit">邮箱地址</text>
+        <!-- 
+          bindinput事件：表单项内容发生改变实时触发
+          bindchange事件： 数据改变后，失去焦点后才会触发 -->
+        <input  type="text" id="email" data-test="123" data-type="email" placeholder="请输入邮箱地址" bindinput="handleInput" />
+      </view>
+      <view class="input-item">
+        <text class="tit">密码</text>
+        <input type="password" id="password" data-type="password" placeholder="请输入密码" bindinput="handleInput" />
+      </view>
+    </view>
+    <button class="confirm-btn" bindtap="login" >登录</button>
+    <view class="forget-section">
+      忘记密码?
+    </view>
+  </view>
+  <view class="register-section">
+    还没有账号?
+    <text >马上注册</text>
+  </view>
+</view>

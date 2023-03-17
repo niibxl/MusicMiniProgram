@@ -1,0 +1,50 @@
+<view class="searchContainer">
+    <!-- 搜索框头部 -->
+    <view class="header">
+        <view class="searchInput">
+            <text class="iconfont icon-search:before"></text>
+            <input value="{{searchContent}}" bindinput="handleSearch" type="text" placeholder="{{placeholderContext}}" placeholder-class="placeholder" />
+            <!-- hidden相当于vue中的v-show 当改动较频繁时使用可以提高性能 -->
+            <text hidden="{{!searchContent}}" bindtap="cleanSearchContent" class="iconfont icon-igw-l-clean:before clean"></text>
+        </view>
+        <view class="cancel">取消</view>
+    </view>
+
+    <!-- 搜索框内容展示 -->
+    <!-- block标签可以把整段代码视为一个整体，但是在浏览器解析式不会被解析到。 -->
+    <block wx:if="{{searchList.length}}">
+        <view class="showSearchContent">
+            <view class="searchContent">搜索内容：{{searchContent}}</view>
+            <view class="searchList">
+                <view class="searchItem" wx:for="{{searchList}}" wx:key="id">
+                    <text class="iconfont icon-search:before"></text>
+                    <text class="content">{{item.name}}</text>
+                </view>
+            </view>
+        </view>
+    </block>
+
+    <!-- 搜索的历史记录 -->
+    <block wx:else>
+        <view class="history" wx:if="{{historyList.length}}">
+            <view class="title">历史记录</view>
+            <view class="historyItem" wx:for="{{historyList}}" wx:key="{{item}}">{{item}}</view>
+            <text bindtap="deleteHistory" class="iconfont icon-delete:before  delete" ></text>
+        </view>
+
+
+
+    <!-- 热搜榜部分 -->
+    <view class="hotContainer">
+        <view class="title">热歌榜</view>
+        <!-- 热搜列表 -->
+        <view class="hotList">
+            <view class="hotItem" wx:for="{{hotList}}" wx:key="searchWord">
+                <text class="count">{{index + 1}}</text>
+                <text>{{item.searchWord}}</text>
+                <image wx:if="{{item.iconUrl}}" class="iconImg" src="{{item.iconUrl}}"></image>
+            </view>
+        </view>
+    </view>
+   </block>
+</view>

@@ -1,0 +1,143 @@
+/* index/index.wxss */
+/* 轮播图区域 */
+
+.banners{
+  width: 100%;
+  height: 300rpx;
+}
+.banners image{
+  width: 100%;
+  height: 100%;
+}
+
+/* 导航栏图标区域 */
+.navContainer{
+  display: flex;
+}
+.navItem{
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  align-items: center;
+}
+.navItem .iconfont{
+  width: 100rpx;
+  height: 100rpx;
+  line-height: 100rpx ;
+  text-align: center;
+  background-color: rgb(240, 19, 19);
+  border-radius: 50%;
+  font-size: 50rpx;
+  color: #fff;
+  margin: 20rpx 0;
+}
+.navItem text{
+  /* 此处font-size不会覆盖上面的设置，因为类选择器的权重高于标签选择器。 */
+  font-size: 26rpx  ;
+}
+
+/* 推荐歌曲文本区域 */
+.recommendContainer{
+  padding: 20rpx;
+}
+.recommendContainer .header{
+  padding-bottom: 20rpx;
+}
+.recommendContainer .header .title{
+  font-size: 32rpx;
+  line-height: 80rpx;
+  color: #666;
+}
+.recommendContainer .header .more{
+  float: right;
+  padding: 10rpx 20rpx;
+  font-size: 26rpx;
+  border: 1px solid #333;
+  border-radius: 30rpx;
+}
+
+/* 轮滑图内容区 */
+.scroll{
+  display: flex;
+  height: 300rpx;
+}
+.scroll .scrollItem{
+  width: 200rpx;
+  margin-right: 20rpx;
+}
+.scroll .scrollItem image{
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 10rpx;
+}
+.scroll .scrollItem text{
+  font-size: 26rpx;
+
+  /* 设置单行文本溢出隐藏  省略号  三件套*/
+  /* white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; */
+  /* text为行内元素 overflow不生效 */
+  /* display: block; */
+
+  /* 设置多行文本溢出隐藏 省略号 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  /* 设置对齐模式 */
+  -webkit-box-orient: vertical;
+  /* 设置显示行数 */
+  -webkit-line-clamp: 2;
+
+}
+
+/* 排行榜区域 */
+.topList{
+  padding: 20rpx;
+}
+
+.topListSwiper{
+  /* 有一个默认高度150px，导致下方的item无法显示 */
+  height: 400rpx;
+}
+
+.swiperItem{
+  width: 96%;
+  background: #fbfbfb;
+}
+
+.swiperItem .title{
+  font-size: 30rpx;
+  line-height: 80rpx;
+}
+
+.musicItem{
+  /* 当一个元素设置为flex，其子元素会自动变成块元素（但是不会独占一行，因为flex本身默认独占一行） */
+  display: flex;
+  margin-bottom: 10rpx ;
+}
+
+.musicItem image{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 8rpx;
+}
+
+.musicItem .count{
+  width: 100rpx;
+  height: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+}
+
+.musicItem .musicName {
+  height: 100rpx;
+  line-height: 100rpx;
+  /* 歌曲名太长可能自动换行 */
+  max-width: 400rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
